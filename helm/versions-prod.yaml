@@ -2,4 +2,4 @@
 # Updated by deploy-prod when promoting a release.
 # Helm image.tag is taken from this file — not from values-prod.yaml.
 hello-world: "0.0.3"
-good-night-world: "0.0.1"
+good-night-world: "0.0.2"
