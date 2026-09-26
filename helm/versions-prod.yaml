@@ -1,5 +1,5 @@
 # Desired image tags for PROD (shared by all microservices).
 # Updated by deploy-prod when promoting a release.
 # Helm image.tag is taken from this file — not from values-prod.yaml.
-hello-world: "0.0.3"
+hello-world: "0.1.0"
 good-night-world: "0.0.2"
