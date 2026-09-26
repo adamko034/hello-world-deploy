@@ -9,9 +9,9 @@ springProfile: default
 
 service:
   type: ClusterIP
-  port: 1234
+  port: 1235
 
-containerPort: 1234
+containerPort: 1235
 
 probes:
   liveness:
