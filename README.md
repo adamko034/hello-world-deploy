@@ -1,11 +1,11 @@
 # hello-world-deploy
 
-Shared GitOps / Helm repository for microservices:
+Shared GitOps / Helm repository for:
 
 - `helm/hello-world`
 - `helm/good-night-world`
 
-Both apps deploy into the **same namespaces**:
+## Namespaces
 
 | Env  | Namespace |
 |------|-----------|
@@ -13,28 +13,28 @@ Both apps deploy into the **same namespaces**:
 | QA   | `qa`      |
 | PROD | `prod`    |
 
+## Desired versions (GitOps)
+
+| File | Purpose |
+|------|---------|
+| `versions-qa.yaml` | Image tags for QA — updated by **release** jobs |
+| `versions-prod.yaml` | Image tags for PROD — updated by **deploy-prod** |
+
+```yaml
+hello-world: "0.0.4"
+good-night-world: "0.0.1"
+```
+
+DEV does **not** use these files (SNAPSHOT / build tag from CI).
+
+QA/PROD Helm deploys set `image.tag` from the matching versions file.
+
 ## Layout
 
 ```text
+versions-qa.yaml
+versions-prod.yaml
 helm/
   hello-world/
   good-night-world/
-```
-
-## Example
-
-```bash
-# DEV — hello-world
-helm upgrade --install hello-world ./helm/hello-world \
-  -n dev -f ./helm/hello-world/values-dev.yaml \
-  --set image.repository=adamko034/hello-world \
-  --set image.tag=<tag> \
-  --create-namespace
-
-# DEV — good-night-world
-helm upgrade --install good-night-world ./helm/good-night-world \
-  -n dev -f ./helm/good-night-world/values-dev.yaml \
-  --set image.repository=adamko034/good-night-world \
-  --set image.tag=<tag> \
-  --create-namespace
 ```

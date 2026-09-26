@@ -1,11 +1,9 @@
 # Prod environment overrides
+# image.tag comes from repo-root versions-prod.yaml (set by Jenkins / GitOps)
 name: PROD
 springProfile: prod
 
 replicaCount: 2
-
-image:
-  tag: "0.0.1"
 
 service:
   type: ClusterIP

@@ -1,0 +1,5 @@
+# Desired image tags for QA (shared by all microservices).
+# Updated by release jobs (and optionally by deploy-qa).
+# Helm image.tag is taken from this file — not from values-qa.yaml.
+hello-world: "0.0.1"
+good-night-world: "0.0.1"
