@@ -20,7 +20,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ include "hello-world.name" . }}
-        image: "{{ .Values.image.repository }}:{{ required \"image.tag is required (from versions-qa.yaml / versions-prod.yaml or --set)\" .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ required "image.tag is required (from versions-qa.yaml / versions-prod.yaml or --set)" .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - name: http

@@ -1,6 +1,6 @@
 1. Port-forward to reach /api/good-night:
 
-   kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "good-night-world.fullname" . }} 1234:{{ .Values.service.port }}
+   kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "good-night-world.fullname" . }} {{ .Values.service.port }}:{{ .Values.service.port }}
 
 2. Open:
 
