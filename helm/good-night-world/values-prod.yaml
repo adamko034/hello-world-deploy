@@ -1,5 +1,5 @@
 # Prod environment overrides
-# image.tag comes from repo-root versions-prod.yaml (set by Jenkins / GitOps)
+# image.tag comes from helm/versions-prod.yaml (set by Jenkins / GitOps)
 name: PROD
 springProfile: prod
 

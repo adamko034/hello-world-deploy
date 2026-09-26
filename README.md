@@ -17,8 +17,8 @@ Shared GitOps / Helm repository for:
 
 | File | Purpose |
 |------|---------|
-| `versions-qa.yaml` | Image tags for QA — updated by **release** jobs |
-| `versions-prod.yaml` | Image tags for PROD — updated by **deploy-prod** |
+| `helm/versions-qa.yaml` | Image tags for QA — updated by **release** jobs |
+| `helm/versions-prod.yaml` | Image tags for PROD — updated by **deploy-prod** |
 
 ```yaml
 hello-world: "0.0.4"
@@ -27,14 +27,12 @@ good-night-world: "0.0.1"
 
 DEV does **not** use these files (SNAPSHOT / build tag from CI).
 
-QA/PROD Helm deploys set `image.tag` from the matching versions file.
-
 ## Layout
 
 ```text
-versions-qa.yaml
-versions-prod.yaml
 helm/
+  versions-qa.yaml
+  versions-prod.yaml
   hello-world/
   good-night-world/
 ```

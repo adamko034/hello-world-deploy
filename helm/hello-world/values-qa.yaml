@@ -1,5 +1,5 @@
 # QA environment overrides
-# image.tag comes from repo-root versions-qa.yaml (set by Jenkins / GitOps)
+# image.tag comes from helm/versions-qa.yaml (set by Jenkins / GitOps)
 name: QA
 springProfile: qa
 
