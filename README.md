@@ -1,31 +1,40 @@
 # hello-world-deploy
 
-GitOps / deploy repository for the **hello-world** microservice.
+Shared GitOps / Helm repository for microservices:
 
-Holds the Helm chart and environment values. Application code and CI live in the app repo; this repo defines **what version runs where**.
+- `helm/hello-world`
+- `helm/good-night-world`
+
+Both apps deploy into the **same namespaces**:
+
+| Env  | Namespace |
+|------|-----------|
+| DEV  | `dev`     |
+| QA   | `qa`      |
+| PROD | `prod`    |
 
 ## Layout
 
 ```text
-helm/hello-world/          # Helm chart
-  Chart.yaml
-  values.yaml              # defaults
-  values-dev.yaml          # DEV (SNAPSHOT / build tags)
-  values-qa.yaml           # QA (released tags)
-  values-prod.yaml         # PROD (released tags)
-  templates/
+helm/
+  hello-world/
+  good-night-world/
 ```
 
-## Usage
-
-Jenkins (or later Argo CD) checks out this repo and runs:
+## Example
 
 ```bash
+# DEV — hello-world
 helm upgrade --install hello-world ./helm/hello-world \
-  -n hello-world-qa \
-  -f ./helm/hello-world/values-qa.yaml \
+  -n dev -f ./helm/hello-world/values-dev.yaml \
   --set image.repository=adamko034/hello-world \
-  --set image.tag=<version>
-```
+  --set image.tag=<tag> \
+  --create-namespace
 
-Promote by changing `image.tag` in the env values file (PR) and/or deploying via Jenkins with an explicit tag.
+# DEV — good-night-world
+helm upgrade --install good-night-world ./helm/good-night-world \
+  -n dev -f ./helm/good-night-world/values-dev.yaml \
+  --set image.repository=adamko034/good-night-world \
+  --set image.tag=<tag> \
+  --create-namespace
+```
